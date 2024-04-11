@@ -1,13 +1,16 @@
-import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import React from "react";
 
-export default function ProductDetails({
-  params,
-}: {
+type Props = {
   params: { productId: string };
-}) {
-  if (parseInt(params.productId) > 100) {
-    notFound();
-  }
+};
+
+export const generateMetadata = ({ params }: Props): Metadata => {
+  return {
+    title: `Product ${params.productId}`,
+  };
+};
+
+export default function ProductDetails({ params }: Props) {
   return <div>Product {params.productId}</div>;
 }
