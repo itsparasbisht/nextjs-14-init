@@ -1,16 +1,23 @@
-import { Metadata } from "next";
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type Props = {
   params: { productId: string };
 };
 
-export const generateMetadata = ({ params }: Props): Metadata => {
-  return {
-    title: `Product ${params.productId}`,
-  };
-};
-
 export default function ProductDetails({ params }: Props) {
-  return <div>Product {params.productId}</div>;
+  const router = useRouter();
+
+  function handleClick() {
+    router.push("/");
+  }
+
+  return (
+    <div>
+      <h1>Product {params.productId}</h1>
+      <button onClick={handleClick}>Order</button>
+    </div>
+  );
 }
