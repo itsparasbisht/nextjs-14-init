@@ -1,10 +1,14 @@
+import { NextRequest } from "next/server";
+
 type Context = {
   params: {
     id: string;
   };
 };
 
-export async function GET(req: Request, { params }: Context) {
+export const dynamic = "force-dynamic";
+
+export async function GET(req: NextRequest, { params }: Context) {
   const cookie = req.headers.get("cookie");
   console.log(cookie);
 
